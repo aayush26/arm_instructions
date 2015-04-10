@@ -1,0 +1,6 @@
+
+The Git Bash for Windows can be downloaded from the url
+http://git-scm.com/download/win
+
+
+
