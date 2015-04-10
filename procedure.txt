@@ -1,0 +1,9 @@
+git status		//untracked files
+git add configureProxyandPort.txt
+git status		//new file 
+git commit -m "configure proxy and port"
+git log
+git pull		//to update local repository from any changes done in the remote repository
+git push
+git remote -v		//to check remote url is linked or not
+		
