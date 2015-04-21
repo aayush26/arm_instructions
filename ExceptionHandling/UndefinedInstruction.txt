@@ -1,0 +1,27 @@
+/*
+If the ARM processor executes a co-processor instruction, it waits for any external co-processor to acknowledge  that 
+it can execute the instruction. If no co-processor responds, an Undefined Instruction exception occurs.
+If an attempt is made to execute an instruction that is UNDEFINED, an Undefined Instruction exception occurs.
+It can be used for software emulation of a co-processor in a system that does not have the physical co-processor 
+(hardware), or for general-purpose instruction set extension by software emulation.
+*/
+
+R14_und = address of next instruction after the Undefined instruction
+SPSR_und = CPSR		
+CPSR[4:0] = 0b11011				//Enter Undefined Instruction mode
+CPSR[5] = 0					//Execute in arm STATE
+						//CPSR[6] is unchanged	
+CPSR[7] = 1					//Disable normal interrupts
+						//CPSR[8] is unchanged
+CPSR[9] = CP15_reg1_EEbit			//Endianness on exception entry
+if high vectors configures then
+	PC = 0xFFFF0004
+else
+	PC = 0X00000004
+
+//To return after emulating the Undefined instruction use:
+//MOVS PC,R14
+//some case, an internal exception condition caused by one coprocessor instruction results in refussal of later coprocessor
+//instruxtion.In such cases, Undefined Instruction handler takes whatever action is necessary to clear exception condition,
+//then returns to the second co-processor instruction. To do this use:
+//SUBS PC,R14,#4
