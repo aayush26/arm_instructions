@@ -1,0 +1,13 @@
+R14_<exception_moe> = return link
+SPSR_<exception_mode> = CPSR
+CPSR[4:0] = exception mode number
+CPSR[5] = 0 				//Execute in ARM state
+if <exception_mode> == Reset or FIQ then
+	CPSR[6] = 1			//Disable fast interrupts
+//else CPSR[6] is unchanged
+CPSR[7] = 1				//Disable normal interrupts
+if <exception_mode> != UNDEF or SWI then
+	CPSR[8] = 1			//Disable imprecise aborts (v6 only)
+//else CPSR[8] is unchanged
+CPSR[9] = CP15_reg1_EEbit		//Endianness on exception entry
+PC = exception vector address
