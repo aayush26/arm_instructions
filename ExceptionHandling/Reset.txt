@@ -1,0 +1,19 @@
+//When reset input is asserted on the processor, the ARM processor immediately stops execution of 
+the current instruction. When reset is de-asserted, the following actions are performed:
+
+R14_svc = UNPREDICTABLE value
+SPSR_svc = UNPREDICTABLE value
+CPSR[4:0] = 0b10011				//Enter supervisor mode
+CPSR[5] = 0					//Execute in ARM state
+CPSR[6] = 1					//Disable fast interrupts
+CPSR[7] = 1					//disable normal interrupts
+CPSR[8] = 1					//disable imprecise aborts (v6 only)
+CPSR[9] = CP15_reg1_EEbit			//Endianness on exception entry
+if high vectors configures then
+	PC = 0xFFFF0000
+else 
+	PC = 0x00000000
+
+
+//After reset, the ARM proseccor begins execution at address 0x00000000 or 0xFFFF0000 in Supervisor mode 
+//with interrupts disabled.
