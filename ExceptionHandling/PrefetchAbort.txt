@@ -1,0 +1,20 @@
+//Prefetch Abort(Instruction fetch memory abort)
+//A memory abort is signaled by the memory system. Activating 
+an abort response to an instruction fetch marks the fetched instruction as invalid. A Prefetch abort exception is generated if the processor tries to execute the invalid instruction.
+//In ARMv5 and above, it can also be generated as a result of executing a BKPT instruction.
+
+R14_abt = address of the aborted instruction + 4
+SPSR_abt = CPSR
+CPSR[4:0] = 0b10111			//Enter abort mode
+CPSR[5] = 0				//Execute in ARM state
+					//CPSR[6] is unchanged
+CPSR[7] = 1				//Disable normal interrupts
+CPSR[8] = 1				//Disable imprecise data aborts(ARMv6 only)
+CPSR[9] = CP15_reg1_EEbit			//Endianness on exception entry
+if high vectors configured then
+	PC =  0xFFFF000C
+else
+	PC = 0x0000000C
+
+//to restore PC
+//SUBS PC,R14,#4
