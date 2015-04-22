@@ -1,0 +1,21 @@
+//Data Abort(data access memory abort)
+//It is signaled by the memory system. Activating an abort in response to a data acess marks the data as invalid. A data exception occurs //before any following instructions or exceptions have altered the state of CPU.
+
+P14_abt = address of the aborted instruction +  8
+SPSR_abt = CPSR
+CPSR[4:0] = 0b10111			//Enter Abort mode
+CPSR[5] = 0				//Execute in ARM state
+					//CPSR[6] is unchanged
+CPSR[7] = 1				//Disable normal interrupts
+CPSR[8] = 1				//Disable imprecise data aborts(v6 only)
+CPSR[9] = CP15_reg1_EEbit			//Endianness on exception entry
+if high vectors configured then
+	PC = 0xFFFF0010
+else
+	PC = 0x00000010
+
+//to restore and return to re-execute the aborted instruction
+//SUBS PC,R14,#8
+
+//to restore and aborted instructiondoes not nedd to be re-executed
+//SUBS PC,R14,#4
