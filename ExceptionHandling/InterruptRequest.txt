@@ -1,0 +1,20 @@
+//Interrupt Request(IRQ) exception
+//I is masked on when FIQ sequence is entered.
+R14_irq = adrress of next instruction to be executed + 4
+SPSR_irq = CPSR
+CPSR[4:0] = 0b10010			//Enter IRQ mode
+CPSR[5] = 0				//eXECUTE IN ARM mode
+					//CPSR[6] is unchanged
+CPSR[7] = 1				//Disable normal interrupts
+CPSR[8] = 1				//Disable imprecise Data Aborts(ARMv6 only)
+CPSR[9] = CP15_reg1_EEbit		//Endianness on exception entry
+if VE==0 then
+	if high vectors configures then
+		PC = 0xFFFF0018
+	else
+		PC = 0x00000018
+else
+	PC = IMPLEMENTATION DEFINED
+
+//to restore CPSR and PC
+//SUBS PC,R14,#4
