@@ -1,0 +1,13 @@
+Exception Priorities
+
+		Priority			Exception
+Highest		1			Reset
+		2			Data Abort(including TLB miss)
+		3			FIQ
+		4			IRQ
+		5			Imprecise abort(external abort) ARMv6
+		6			Prefetch Abort(including prefetch TLB miss)
+Lowest		7			Undefined instruction
+					SWI
+
+Undefined and Software interrupt cannot occur at the same time, because they each correspond to particular(non-overlapping) decodings of the current instruction.
