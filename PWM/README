@@ -1,0 +1,6 @@
+PWM(Pulse Width Modulation)
+
+This is a PWM program for SAM7SE512 microcontroller.
+It was ran on SAM7SE512-EK board using Keil uVision v4 IDE.
+The file name has been named as blinky though its not a blinky program.
+Open Blinky.uvproj in Keil to load the full project.
