@@ -1,0 +1,8 @@
+Dependencies for Project 'Blinky', Target 'SAM7SE Flash - SAMICE': (DO NOT MODIFY !)
+F (.\SAM7.s)(0x5209CDA8)(--cpu ARM7TDMI --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Atmel\SAM7SE-o .\flash\sam7.o --depend .\flash\sam7.d)
+F (.\Retarget.c)(0x5209CDA8)(-c --cpu ARM7TDMI -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Atmel\SAM7SE-o .\flash\retarget.o --depend .\flash\retarget.d)
+I (C:\Keil\ARM\ARMCC\include\rt_misc.h)(0x51C7DA6C)
+F (.\Blinky.c)(0x54E72924)(-c --cpu ARM7TDMI -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Atmel\SAM7SE-o .\flash\blinky.o --depend .\flash\blinky.d)
+I (C:\Keil\ARM\Inc\Atmel\SAM7SE\AT91SAM7SE512.H)(0x5209CD60)
+I (../AT91SAM7SE-EK.h)(0x5209CDA6)
+F (.\Abstract.txt)(0x5209CDA8)()
